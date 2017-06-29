@@ -2,11 +2,19 @@
 int main()
 {
     char *string1 = "abcdef";
-    char *string2 = "abx";
+    char *string2 = "cdx";
     char y[10];
     //char n[10];
-    int count;
-    for (; *string1 == *string2; string1++,string2++)
-        y[count++] = *string1;
+    int count = 0;
+    for (; *string2 != '\0';) {
+        for (; *string1 != '\0';) {
+            if (*string1 == *string2) {
+                y[count++] = *string2;
+                break;
+            }
+            string1++;
+        }
+        string2++;
+    }
     printf("%s\n",y);
 }
