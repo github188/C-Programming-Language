@@ -2,7 +2,7 @@
 int main()
 {
     char *string1 = "abcdef";
-    char *string2 = "cdx";
+    char *string2 = "acde";
     char y[10];
     //char n[10];
     int count = 0;
