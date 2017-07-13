@@ -8,13 +8,17 @@
 #include<stdio.h>
 #include<ctype.h>
 
+int getch();
+void ungetch(int);
+
+
 int getword(char * word, int lim)
 {
-    int c, d, comment(void), getch(void);
-    void ungetch(int);
+    int c, d, comment(void);
+    //void ungetch(int);
     char * w = word;
 
-    while (isspace(c = getch))
+    while (isspace(c = getch()))
         ;
     if (c != EOF)
         *w++ = c;
