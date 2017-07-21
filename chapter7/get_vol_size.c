@@ -6,8 +6,8 @@
  ************************************************************************/
 
 #include<stdio.h>
-#include<sys/types.h>  /*提供类型pid_t,size_t的定义*/
-#include<sys/stat.h>
+//#include<sys/types.h>  /*提供类型pid_t,size_t的定义*/
+//#include<sys/stat.h>
 #include<fcntl.h>
 #include<unistd.h>
 unsigned long long getVolumeDiskSize(char *diskName) {

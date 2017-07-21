@@ -11,21 +11,30 @@ typedef struct point {
     int y;
 }point, *pt_point;
 
-typedef struct map {
+typedef struct line {
     point p;
+}line, *pt_line;
+
+
+typedef struct map {
+    line l;
 }map;
 
-void init_point(pt_point p)
+void init_point(pt_line l)
 {
-    p->x = 1;
-    p->y = 1;
+    l->p.x = 1;
+    l->p.y = 1;
 }
 
 int main()
 {
     map m;
-    init_point(&m.p);
-    printf("%d\n", m.p.x);
-    printf("%d\n", m.p.y);
+    line l;
+    l.p.x = 1;
+    l.p.y = 1;
+    m.l = l;
+    //init_point(&m.l);
+    printf("%d\n", m.l.p.x);
+    printf("%d\n", m.l.p.y);
     return 0;
 }
