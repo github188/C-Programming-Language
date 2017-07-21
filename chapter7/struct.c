@@ -18,7 +18,7 @@ typedef struct line {
 
 typedef struct map {
     line l;
-}map;
+}map, *pt_map;
 
 void init_point(pt_line l)
 {
@@ -28,13 +28,16 @@ void init_point(pt_line l)
 
 int main()
 {
-    map m;
-    line l;
-    l.p.x = 1;
-    l.p.y = 1;
-    m.l = l;
+    pt_map m;
+    pt_line l;
+    printf("111111\n");
+    l->p.x = 1;
+    printf("222222\n");
+    l->p.y = 1;
     //init_point(&m.l);
-    printf("%d\n", m.l.p.x);
-    printf("%d\n", m.l.p.y);
+    printf("ssssss");
+    m->l = *l;
+    printf("%d\n", m->l.p.x);
+    printf("%d\n", m->l.p.y);
     return 0;
 }
