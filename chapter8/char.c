@@ -25,7 +25,9 @@ int main()
 {
     struct timespec  timestamp_value;
     pt_ddcp_hdr p_hdr = NULL;
-    p_hdr = (pt_ddcp_hdr)malloc(sizeof(ddcp_hdr));
+    printf("44444444");
+    p_hdr = (pt_ddcp_hdr)malloc(sizeof(ddcp_hdr)+sizeof(unsigned long long));
+    printf("55555555");
     unsigned long long timestamp_status;
     unsigned long long * time;
 
@@ -36,11 +38,13 @@ int main()
     p_hdr->control_cmd = 1;
     p_hdr->task_id = 1;
     p_hdr->packet_len = sizeof(unsigned long long);
-    time = (unsigned long long *)p_hdr->packet;
+    printf("11111");
+    *((unsigned long long *)(p_hdr->packet)) = timestamp_status;
+    printf("22222");
     *time = timestamp_status;
+    printf("33333");
 
-
-
-    printf("%d\n", p_hdr->packet);
+    printf("%lld\n", *time);
+    printf("%lld\n", p_hdr->packet);
 }
 
