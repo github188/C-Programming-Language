@@ -10,7 +10,8 @@
 
 
 int change(char * tem) {
-    sprintf(tem, "hello,world");
+    //sprintf(tem, "hello,world");
+    strcpy(tem,"hello,world.");
 }
 
 

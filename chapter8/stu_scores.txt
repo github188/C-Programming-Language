@@ -1,0 +1,1 @@
+id=1,name=letuknowit,chinese=89.000000,math=87.000000,english=88.000000
