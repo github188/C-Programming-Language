@@ -24,6 +24,7 @@ int  vol_get_uuid(char * vol_path, char * uuid)
     char * str = NULL;
     char * strs[6] = {0};
     char * attribute;
+    char * temp_value;
     char * value;
 
     snprintf(cmd, MAX_SHELL_STR_LEN, "blkid %s", vol_path);
@@ -43,7 +44,9 @@ int  vol_get_uuid(char * vol_path, char * uuid)
 
         }
         attribute = strtok(strs[1], "=");
-        value   = strtok(NULL, "=");
+        temp_value   = strtok(NULL, "=");
+        value = strtok(temp_value, "\""); 
+//        value = strtok(NULL, "\"");
         strncpy(uuid, value, VOL_UUID_LEN);
         return  0;
     }
