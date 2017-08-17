@@ -45,7 +45,7 @@ int  vol_get_uuid(char * vol_path, char * uuid)
         }
         attribute = strtok(strs[1], "=");
         temp_value   = strtok(NULL, "=");
-        value = strtok(temp_value, "\""); 
+        value = strtok(value, "\""); 
 //        value = strtok(NULL, "\"");
         strncpy(uuid, value, VOL_UUID_LEN);
         return  0;
