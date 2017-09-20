@@ -36,12 +36,15 @@ int get_real_vol(char * vol_name, char * o_vol_name)
 
 int main()
 {
+    char tmp_vol_name[32] = {0};
     char vol_name[32] = "vdb";
     char temp_vol[32] = "test_lv";
     char o_vol[32] = {0};
     int i;
+    strcpy(tmp_vol_name, vol_name);
+    strcpy(vol_name, temp_vol);
     push_to_array(vol_name);
-    push_to_array(temp_vol);
+    push_to_array(tmp_vol_name);
 
     for(i = 0; i < count; i++) {
         printf("int main:%s\n", vol_name_backup[i]);
