@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="54.250.254.200">
+    <serverData>
+      <paths name="54.250.254.200">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/ec2-user/C-Programming-Language" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
