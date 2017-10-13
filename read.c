@@ -4,6 +4,17 @@
 #include<errno.h>
 #include<fcntl.h>
 #define LOCAL_TASK_LV_PATH "test.txt"
+
+struct drcbd_metadata
+{
+    unsigned long long  timestamp;                //时间戳
+    unsigned int        reserve_sectors;          //保留扇区数-在海量缓存中,元数据与拷贝数据间的保留扇区数(在海量缓存结尾处存在)
+    unsigned int        sector_number;            //复制数据扇区数
+    unsigned long long  buff_sector_offset;       //复制数据在海量缓存中的偏移
+    unsigned long long  host_sector_offset;       //变化数据在备份卷中偏移
+
+};
+
 size_t drc_read(int fd, void * buf, size_t len)
 {
     char * buf_index = (char *)buf;            /* 读取缓冲区偏移指针*/
