@@ -13,7 +13,14 @@ typedef struct  lv_info
     unsigned long long lv_left_size;       /* 卷空余空间 */
 }lv_info, *pt_lv_info;
 
-int son(pt_lv_info * p_lv)
+typedef struct task_info
+{
+    pt_lv_info p_lv_info;
+    int task_id;
+}task_info, *p_task_info;
+
+
+/*int son(pt_lv_info * p_lv)
 {
     *p_lv = (pt_lv_info)malloc(sizeof(lv_info)*32);
 
@@ -22,9 +29,9 @@ int son(pt_lv_info * p_lv)
     }else {
         return 1;
     }
-}
+}*/
 
-int main()
+/*int main()
 {
     int ret;
     pt_lv_info  p_lv_info = NULL;
@@ -40,4 +47,26 @@ int main()
         printf("%p\n", p_lv_info);
     }
     return 0;
+}*/
+
+int main()
+{
+    int ret;
+    //pt_lv_info  p_lv_info = NULL;
+    p_task_info p_task = NULL;
+
+    printf("%p\n", p_task);
+    p_task = (p_task_info)malloc(sizeof(task_info));
+    p_task->p_lv_info = (pt_lv_info) malloc(sizeof(lv_info));
+    //ret = son(&p_lv_info);
+    if(p_task) {
+
+        printf("%p\n", p_task);
+        free(p_task->p_lv_info);
+        free(p_task);
+        p_task = NULL;
+        printf("%p\n", p_task);
+    }
+    return 0;
 }
+
