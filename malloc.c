@@ -57,14 +57,17 @@ int main()
 
     printf("%p\n", p_task);
     p_task = (p_task_info)malloc(sizeof(task_info));
-    p_task->p_lv_info = (pt_lv_info) malloc(sizeof(lv_info));
+    p_task->p_lv_info[0] = (pt_lv_info) malloc(sizeof(lv_info));
     //ret = son(&p_lv_info);
     if(p_task) {
 
         printf("%p\n", p_task);
-        free(p_task->p_lv_info);
-        free(p_task);
+        free(p_task->p_lv_info[0]);
+        p_task->p_lv_info[0] = NULL;
+        //free(p_task->p_lv_info);    
+        destroy(p_task);
         p_task = NULL;
+        destroy(p_task);
         printf("%p\n", p_task);
     }
     return 0;
