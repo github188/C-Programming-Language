@@ -6,6 +6,51 @@
  ************************************************************************/
 
 #include<stdio.h>
+#include<string.h>
+
+#define PATH_NAME_LEN 128
+#define MAX_SHELL_STR_LEN 1024
+
+int is_logical_volume(char * vol_path)
+{
+    int count = 0;
+
+    while (*vol_path != '\0') {
+        if (*vol_path == '/')
+            count++;
+        vol_path++;
+    }
+    if (count >= 3)
+        return 1;
+    else if (count == 2)
+        return 0;
+    else
+        return -1;
+}
+
+
+int logical_convert_combination(char * logical_name)
+{
+    int ret = -1;
+    char temp_name[PATH_NAME_LEN] ={0};
+    char combination_name[PATH_NAME_LEN] ={0};
+
+    char *value_vg = NULL;
+    char *value_lv = NULL;
+
+    strncpy(temp_name, logical_name, PATH_NAME_LEN);
+    if(temp_name != NULL)
+    {
+        strtok(temp_name," /");
+        value_vg  = strtok(NULL,    " /");
+        value_lv  = strtok(NULL,    " /");
+        sprintf(combination_name, "%s-%s", value_vg, value_lv);
+        strncpy(logical_name, combination_name, PATH_NAME_LEN);
+        ret = 0;
+    }
+    return ret;
+}
+
 
 
 is_sys_vol(char * vol_name)
@@ -36,19 +81,35 @@ is_sys_vol(char * vol_name)
 
     }
 
-    if(NULL != fgets(parse_buf, PHASE_LINE_LEN, file_temp)) {
+    if(NULL != fgets(parse_buf, 128, file_temp)) {
         str = parse_buf;
         while(NULL != (strs[i] = strtok(str," "))){
             i++;
             str = NULL;
-
+        }
+        if (strcmp(strs[2],"/")==0) {
+            printf("%s\n", strs[2]);
+            pclose(file_temp);
+            return 1;
         }
     }
+    pclose(file_temp);
+    return 0;
 }
 
 
 
-int main()
+
+int main(int argc, char **argv)
 {
-    
+    //char * mount_path = "/dev/cloudvg/test_lv";
+    int ret = is_sys_vol(*(argv+1));
+    printf("ret:%d\n",ret);
+/*    if (strcmp(mount_path, "/")==0) {
+        printf("1\n");
+    } else {
+        printf("0\n");
+    }
+*/
 }
+
