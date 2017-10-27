@@ -51,14 +51,18 @@ size_t drc_read(int fd, void * buf, size_t len)
     return len;
 
 }
-int main()
+int main(int argc, char ** argv)
 {
     int fd;
+    unsigned long offset;
     void * buf = NULL;
     buf = malloc(sizeof(char)*2);
 
-    fd = open(LOCAL_TASK_LV_PATH, O_RDWR);
-    lseek(fd, 1, SEEK_SET);
+    offset = atol(*(argv+1));
+    
+//    fd = open(LOCAL_TASK_LV_PATH, O_RDWR);
+    fd = open(*(argv+2), O_RDWR);
+    lseek(fd, offset*512, SEEK_SET);
     drc_read(fd, buf, 2);
     printf("%s\n", (char*)buf);
     printf("%d\n",fd);
