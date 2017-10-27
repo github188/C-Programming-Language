@@ -66,5 +66,7 @@ int main(int argc, char ** argv)
     drc_read(fd, buf, 2);
     printf("%s\n", (char*)buf);
     printf("%d\n",fd);
+    free(buf);
+    close(fd);
 }
 
