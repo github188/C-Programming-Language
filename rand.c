@@ -1,13 +1,13 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define N 1000
+#define N 20
 
 int a[N];
 void gen_random(int upper_bound)
 {
     int i;
     for (i=0; i<N; i++) {
-        a[i] = (rand() % upper_bound)+10;
+        a[i] = (rand() % upper_bound);
     }
 }
 
@@ -24,11 +24,12 @@ int how_many(int value)
 
 int main(int argc, char *argv[])
 {
-    int i; 
+    int i, j; 
     gen_random(10); 
     printf("value\thow many\n"); 
-    for (i = 10; i < 20; i++) 
-        printf("%d\t%d\n", i, how_many(i)); 
+    for (i = 0; i < 10; i++) {
+        printf("%d\t%d\n", i, how_many(i));
+    } 
     return 0;
 }
 
