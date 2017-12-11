@@ -55,7 +55,7 @@ int drc_system(char * cmd)
 
 int main(int argc, char *argv[])
 {
-    int ret, fd;
+    int ret, fd, fds[2];
     char cmd[MAX_SHELL_STR_LEN] = {0};
     if (argc < 3) {
         printf("too few parameters\n");
@@ -63,10 +63,10 @@ int main(int argc, char *argv[])
     }
 
     ret = mb_open(argv[1], &fd);
-
+    fds[0] = fd;
     snprintf(cmd, MAX_SHELL_STR_LEN, "%s appMng.php -t mysql -a -n mysqld", PHP_PATH);
     //ret = mypopen(cmd, 'r');
-    if (exec_cmd(cmd, &ret, NULL, NULL) == -1) {
+    if (exec_cmd(cmd, &ret, fds, 1) == -1) {
         printf("exec_cmd:%s failed",cmd);
         return 1;
     }

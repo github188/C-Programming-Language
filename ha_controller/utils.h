@@ -30,7 +30,10 @@
  *  Return:     int: 0, 表示成功; -1, 表示失败
  *  Others:     
  */
-int exec_cmd(const char *shell_cmd, int * o_ret, 
-        void (*process_line)(const char *line, void *argv), void *argv);
+int exec_cmd(const char *shell_cmd, int * o_ret, int fd[], int fd_num);
 
+
+FILE * popen_update(const char *progrm, register char *type, int fd[], int fd_num);
+
+int pclose_update(FILE *iop);
 #endif
