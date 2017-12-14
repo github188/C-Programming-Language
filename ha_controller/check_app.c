@@ -6,6 +6,7 @@
 #include<sys/wait.h>
 #include<unistd.h>
 #include"utils.h"
+#include"mb_manage.h"
 #define MAX_SHELL_STR_LEN 1024
 #define PHP_PATH "/usr/local/capsheaf/fsdb/php/bin/php"
 int mb_open(char* mb_vol, int* fd) {
@@ -55,22 +56,30 @@ int drc_system(char * cmd)
 
 int main(int argc, char *argv[])
 {
-    int ret, fd, fds[2];
+    int i, ret, fd, fds[2];
     char cmd[MAX_SHELL_STR_LEN] = {0};
-    if (argc < 3) {
+    if (argc < 2) {
         printf("too few parameters\n");
         return 0;
     }
 
     ret = mb_open(argv[1], &fd);
     fds[0] = fd;
+    ret = mb_open_mng();
+    fds[1] = get_driver_fd();
+    for(i=0;i<2;i++) {
+        printf("fd:%d\n",fds[i]);
+    }
     snprintf(cmd, MAX_SHELL_STR_LEN, "%s appMng.php -t mysql -a -n mysqld", PHP_PATH);
     //ret = mypopen(cmd, 'r');
-    if (exec_cmd(cmd, &ret, fds, 1) == -1) {
+    if (exec_cmd(cmd, &ret, fds, 2) == -1) {
         printf("exec_cmd:%s failed",cmd);
         return 1;
     }
     if (ret==0) {
+        for(i=0;i<2;i++) {
+            printf("fd:%d\n",fds[i]);
+        }
         printf("start app success.\n");
         return 0;
     }
