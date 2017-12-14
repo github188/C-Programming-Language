@@ -67,7 +67,7 @@ popen_update(const char *program, register char *type, int fd[], int fd_num)
     }
     if (pipe(pdes) < 0)
         return (NULL);
-    switch (pid = vfork()) {
+    switch (pid = fork()) {
     case -1:            /* error */
         (void) close(pdes[0]);
         (void) close(pdes[1]);
