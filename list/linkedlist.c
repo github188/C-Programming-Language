@@ -1,3 +1,4 @@
+#include<stdio.h>
 #include <stdlib.h>
 #include "linkedlist.h"
 
@@ -26,9 +27,49 @@ link search(unsigned char key)
 }
 void insert(link p)
 {
-    p->next = head;
-    head = p;
+    link current;
+    current = head;
+    while (current != NULL)
+    {
+        
+        if (current->next == NULL)
+        {
+            if (current->item < p->item)
+            {
+                printf("p->item:%d\n", p->item);
+                p->next = current->next;
+                current->next = p;
+                break;
+            }
+            else
+            {
+                printf("p->item:%d\n", p->item);
+                p->next = current;
+                current = p;
+                break;
+            }
+        }
+        else
+        {
+            if (current->next->item < p->item)
+            {  
+                printf("p->item:%d\n", p->item);
+                p->next = current->next;
+                current->next = p;
+                break;
+            }
+        }
+        current = current->next;
+    }
 
+    if (head == NULL)
+    {
+        p->next = head;
+        head = p;
+        head->next = NULL;
+//        printf("head:%d\n",head->item);
+    }
+    //p->next = head;
 }
 void delete(link p)
 {

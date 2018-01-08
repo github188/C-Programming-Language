@@ -8,20 +8,25 @@ void print_item(link p)
 }
 int main(void)
 {
-    link p = make_node(10);
+    link p;
+    p = make_node(90);
     insert(p);
     p = make_node(5);
     insert(p);
-    p = make_node(90);
+    p = make_node(10);
     insert(p);
-    p = search(5);
-    delete(p);
-    free_node(p);
-    traverse(print_item);
-    destroy();
+    //p = search(5);
+    //delete(p);
+    //free_node(p);
+    p = make_node(6);
+    insert(p);
+    //traverse(print_item);
+    //destroy();
     p = make_node(100);
     push(p);
     p = make_node(200);
+    push(p);
+    p = make_node(150);
     push(p);
     p = make_node(250);
     push(p);
