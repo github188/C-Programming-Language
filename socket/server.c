@@ -34,7 +34,7 @@ int main(void)
         n = read(connfd, buf, MAXLINE);
         //printf("buf:%s\n", buf);
         //printf("received from %s at PORT %d\n", inet_ntop(AF_INET, &(cliaddr.sin_addr.s_addr), str, sizeof(str)), ntohs(cliaddr.sin_port));
-        printf("received from  at PORT %d\n", ntohs(cliaddr.sin_port));
+        //printf("received from  at PORT %d\n", ntohs(cliaddr.sin_port));
         for(i=0;i<n;i++)
         {
             buf[i] = toupper(buf[i]);
